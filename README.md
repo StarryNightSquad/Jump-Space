@@ -9,7 +9,7 @@
 使用须知：
 本游戏所有mod均需依赖Melon Loader以运行
 
-        https://github.com/LavaGang/MelonLoader
+    https://github.com/LavaGang/MelonLoader
 
 对mod设置的修改，在游戏目录下UserData文件夹中MelonPreferences.cfg文件进行
 
