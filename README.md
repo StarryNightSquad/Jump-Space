@@ -9,6 +9,8 @@
 使用须知：
 本游戏所有mod均需依赖Melon Loader以运行
 
+对mod设置的修改，在游戏目录下UserData文件夹中MelonPreferences.cfg文件进行
+
 物品权重编辑：
 允许玩家设置不同品质物品的生成概率占比
 
