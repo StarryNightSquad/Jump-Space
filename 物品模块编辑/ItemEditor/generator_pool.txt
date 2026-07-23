@@ -1,0 +1,31 @@
+﻿# 发电机词条池
+# 发电机组件可使用的模块，含反应炉池+电力池
+# 
+# 文件格式说明:
+#   # 开头为注释行，空行忽略
+#   [Items] 区域: 当前类别的物品列表（仅供查看参考，编辑不影响功能）
+#   [Modules] 区域: 当前类别可用的词条模块列表
+#     格式: 模块代码名 | 中文名
+#     删除或注释掉某行 = 该模块不再对当前类别可用
+#     添加新行（需为有效模块代码名）= 该模块对当前类别可用
+#   修改后保存文件，重启游戏或输入 ie reload_pools 即可生效
+# 
+# 生成时间: 2026-07-23 21:59:19
+# 物品数: 4  模块数: 7
+
+[Items]
+85b241f7f2fa6654e9c522519358d1bc | 固态反应堆
+f400f9acd1731b64a87b69ce40517971 | 物质散射反应堆
+65e495611fd9233419832053f8ce55bd | 裂变反应堆
+95c51a0f21d28ba459a43bbf3dbc0790 | 零波反应堆
+
+[Modules]
+# --- 电力模块 (2个) ---
+ItemModule_PowerAmplifier | 容量放大器
+ItemModule_PowerProtector | ItemModule_PowerProtector
+# --- 反应炉模块 (5个) ---
+ItemModule_CorrosiveAffinity_Reactor | 酸性弹药处理
+ItemModule_ElectricAffinity_Reactor | 超大型电容器组
+ItemModule_FireAffinity_Reactor | 武器化散热器
+ItemModule_RadiationAffinity_Reactor | 无屏蔽电源连接
+ItemModule_RuptureAffinity_Reactor | 钨弹头弹药制造机

@@ -1,0 +1,27 @@
+﻿# 护盾词条池
+# 护盾组件（护盾发生器/护盾增幅器/瞄准模块）可使用的模块
+# 
+# 文件格式说明:
+#   # 开头为注释行，空行忽略
+#   [Items] 区域: 当前类别的物品列表（仅供查看参考，编辑不影响功能）
+#   [Modules] 区域: 当前类别可用的词条模块列表
+#     格式: 模块代码名 | 中文名
+#     删除或注释掉某行 = 该模块不再对当前类别可用
+#     添加新行（需为有效模块代码名）= 该模块对当前类别可用
+#   修改后保存文件，重启游戏或输入 ie reload_pools 即可生效
+# 
+# 生成时间: 2026-07-23 21:59:19
+# 物品数: 5  模块数: 4
+
+[Items]
+7a2d7e2dbbb33f742a1c885667377425 | 大型护盾再生器
+554d65de54698714c9f5d2f73bc33261 | 护盾转武器再生器
+e1d2c08495890004e9ebb0ca7fe7c5a1 | 爆发护盾
+10b36cf783993154cbcf8679744cd900 | 瞄准模块
+352d8b4d1f0f38249b5a88c19a11caf3 | 轻型护盾再生器
+
+[Modules]
+ItemModule_ShieldDowntime | 备用电容器
+ItemModule_ShieldEmitterStability | 晶体稳定器
+ItemModule_ShieldRegen | 导电单元
+ItemModule_ShieldsCapacity | 透镜强化

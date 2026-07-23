@@ -1,0 +1,73 @@
+﻿# 舰载武器词条池
+# 舰载武器组件（炮塔/舰炮/火箭/瞄准模块）可使用的模块，含舰载武器池+炮塔系统池
+# 
+# 文件格式说明:
+#   # 开头为注释行，空行忽略
+#   [Items] 区域: 当前类别的物品列表（仅供查看参考，编辑不影响功能）
+#   [Modules] 区域: 当前类别可用的词条模块列表
+#     格式: 模块代码名 | 中文名
+#     删除或注释掉某行 = 该模块不再对当前类别可用
+#     添加新行（需为有效模块代码名）= 该模块对当前类别可用
+#   修改后保存文件，重启游戏或输入 ie reload_pools 即可生效
+# 
+# 生成时间: 2026-07-23 21:59:19
+# 物品数: 13  模块数: 39
+
+[Items]
+5e4082467be3c344698f724e74c6660a | 加特林炮塔
+15bebeb1e9273af4fb7f4213452a6c58 | 导弹发射器
+c3346b9a547672948a2fe02ea2bb5de5 | 干扰激光器
+8c32f9e4ff293894582ceb6b831c40af | 收割者旋转炮
+3290a7dbea83de5488cca77e44cae0a8 | 火神旋转炮
+10b36cf783993154cbcf8679744cd900 | 瞄准模块
+c7e0f6d13e18db440b37a42470f42744 | 破片加农炮
+558ac570efdfbe64390ab32c39d45ff3 | 突击炮塔
+d151b8914ed56d74985d345a118f9a5e | 螺栓加速器
+e2b646f5b39d9994a929c62d32635793 | 采矿激光器
+d593e671947518544ab6dcd2deef3e2e | 长矛轨道炮
+889c471a3fab57d44b28f2592be5d7f8 | 雷爆重型火炮
+b98c1f15ee8b58343acf4f62ddaa93ab | 高射炮发射器炮塔
+
+[Modules]
+# --- 舰载武器基础模块 (5个) ---
+ItemModule_BasicDamage_Ship | 提升伤害
+ItemModule_BasicRecharge_Ship | 提升换弹速度
+ItemModule_BasicRounds_Ship | 扩展弹药架
+ItemModule_BasicTrigger_Ship | 提升射速
+ItemModule_BonusDamage_Ship | 增强口径
+# --- 舰载武器附加模块 (33个) ---
+ItemModule_BreachToRupture_Ship | 突破护甲
+ItemModule_Breach_Ship | 破甲穿刺器
+ItemModule_ChainLink_Ship | 链式连接
+ItemModule_Contagion_Ship | 自适应病毒载荷
+ItemModule_CorrosionToIrradiation_Ship | 放射性添加剂
+ItemModule_Corrosion_Ship | 酸液注射器
+ItemModule_CorrosiveCalibration_Ship | 酸性弹药载荷
+ItemModule_Degrounded_Ship | 未接地
+ItemModule_DisruptionToIrradiation_Ship | 干扰性污染
+ItemModule_EMPShieldRestore_Ship | 寄生护盾充能
+ItemModule_ElectricCalibration_Ship | 导电炮弹
+ItemModule_EmpToCorrosion_Ship | 静电反应
+ItemModule_EmpToDisruption_Ship | 静电反应(干扰)
+ItemModule_Emp_Ship | 过载电池
+ItemModule_ExpandedMagazine_Ship | 扩展磁轨炮弹匣
+ItemModule_FireCalibration_Ship | 易燃枪管润滑剂
+ItemModule_IrradiationToEmp_Ship | 放射性过载
+ItemModule_MinigunAffinity_Ship | X-12旋转装填系统
+ItemModule_OilyPayload_Ship | 油性弹药
+ItemModule_Overwhelm_Ship | 压制
+ItemModule_QuickRecharge_Ship | 快速充能电容器
+ItemModule_RadiationCalibration_Ship | 辐射污染枪管
+ItemModule_RuptureCalibration_Ship | 高斯炮管
+ItemModule_RuptureToSear_Ship | 热摩擦
+ItemModule_Rupture_Ship | 静电过载
+ItemModule_SearToBreach_Ship | 熔点
+ItemModule_SearToCorrosion_Ship | 酸性熔蚀
+ItemModule_Sear_Ship | 点火线圈
+ItemModule_Shotgun_Ship | 弹壳复制器
+ItemModule_StructuralWeakness_Ship | 结构弱点
+ItemModule_VindictiveInfection_Ship | 复仇感染
+ItemModule_VirusToEmp_Ship | 病毒积累
+ItemModule_Virus_Ship | 载荷注射器
+# --- 炮塔系统模块 (1个) ---
+ItemModule_RailgunDoubleShot | 扩展磁轨炮弹匣

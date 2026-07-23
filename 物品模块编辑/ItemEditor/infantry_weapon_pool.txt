@@ -1,0 +1,108 @@
+﻿# 步战武器词条池
+# 手持武器（手枪/冲锋枪/步枪/霰弹枪/重武器/特种/近战/消耗品）可使用的模块
+# 
+# 文件格式说明:
+#   # 开头为注释行，空行忽略
+#   [Items] 区域: 当前类别的物品列表（仅供查看参考，编辑不影响功能）
+#   [Modules] 区域: 当前类别可用的词条模块列表
+#     格式: 模块代码名 | 中文名
+#     删除或注释掉某行 = 该模块不再对当前类别可用
+#     添加新行（需为有效模块代码名）= 该模块对当前类别可用
+#   修改后保存文件，重启游戏或输入 ie reload_pools 即可生效
+# 
+# 生成时间: 2026-07-23 21:59:19
+# 物品数: 16  模块数: 74
+
+[Items]
+b5b14acbf52842b4f90002bd4e9d1391 | Bulldog-SA7
+ea1f1e6ac3c88fe469708ce10b5e451a | CX-305侧装弹夹
+11d2d7e9f079ed4499c9591d8d68c7a7 | MAW-23
+MeleeWeapon_AtiranBlackbelt | MeleeWeapon_AtiranBlackbelt
+MeleeWeapon_Chainblade | MeleeWeapon_Chainblade
+MeleeWeapon_Crowbar | MeleeWeapon_Crowbar
+MeleeWeapon_Wrench | MeleeWeapon_Wrench
+2cbd789d647fa9a4d96f462001a99c91 | SR.99 标枪
+b90b477e483f6cc4aa9a48f33e4400e3 | Stinger MP-75
+4650c46a3c0e5dc41993ce27eb711f80 | UNNAMED
+dd2afc39b34322c4381b6a3ed3e5988a | VSR 戟
+6622f208a88629544b18ef5fafb59bf1 | 多功能工具
+d0261db8215008e48abfefbf7485acfd | 左轮手枪MK0
+1e7fc673c5e07c345ade7b6fef7772d3 | 迷你炮
+5b78767341d912a489d26a3136ab62c7 | 采矿激光器
+55b2b5f6d20d4eb4ab9ef216e5237928 | 铁带轻机枪
+
+[Modules]
+ItemModule_AcidRiposte | 酸液反击
+ItemModule_AdrenalClotting | 肾上腺凝血
+ItemModule_BackloadedBoost | 后置强化
+ItemModule_BackloadedBoost_Flat | 后置强化（固定值）
+ItemModule_BasicDamage | 提升伤害
+ItemModule_BasicMag | 增加弹匣容量
+ItemModule_BasicReload | 提升换弹速度
+ItemModule_BasicRounds | 增加弹匣容量
+ItemModule_BasicTrigger | 提升射速
+ItemModule_BonusDamage | 增强口径
+ItemModule_Breach | 破甲穿刺器
+ItemModule_BreachRiposte | 破甲反击
+ItemModule_Breakpoint | 临界点
+ItemModule_Breakthrough | 突破
+ItemModule_BurningRetaliation | 燃烧报复
+ItemModule_ChainLink | 链式连接
+ItemModule_ChaosTheory | 混沌理论
+ItemModule_ChemicalPayload | 化学弹头
+ItemModule_Contagion | 自适应病毒载荷
+ItemModule_CorrodedServos | 腐蚀伺服器
+ItemModule_Corrosion | 酸液注射器
+ItemModule_CorrosiveResidue | 腐蚀残留
+ItemModule_CritBoost | 扩张弹药
+ItemModule_CritLink | 自适应弹药
+ItemModule_DangerClose | 危险近距
+ItemModule_Degrounded | 未接地
+ItemModule_DualBurstActuator | 双重连发驱动器
+ItemModule_EMPRiposte | EMP反击
+ItemModule_EMPShieldSiphon | EMP护盾虹吸
+ItemModule_EmberSlugs | 余烬弹
+ItemModule_EmergencyVent | 紧急排气
+ItemModule_Emp | 过载电池
+ItemModule_EmpoweredServos | 强化伺服系统
+ItemModule_ExtendedMagazine | 扩容弹匣
+ItemModule_Firestorm | 火焰风暴
+ItemModule_FlachetteRounds | 箭形弹
+ItemModule_HairTrigger | 轻触扳机
+ItemModule_HealthRiposte | 吸血反击
+ItemModule_HeavyBullets | 重型子弹
+ItemModule_HighCapMags | 大容量弹匣
+ItemModule_Hitch | 故障
+ItemModule_IrradiatedSlugs | 辐射弹
+ItemModule_LargeBullets | 大口径子弹
+ItemModule_MeleeKillRush | 强化肾上腺素反应
+ItemModule_MeleePunish | 近战惩戒
+ItemModule_MeleePunishEMP | 近战惩罚EMP
+ItemModule_MetalRecycle | 金属回收
+ItemModule_MicroBullets | 微型子弹
+ItemModule_OilyPayload | 油性弹药
+ItemModule_Overwhelm | 压制
+ItemModule_PacketizedPayload | 分组载荷
+ItemModule_ParryLunge | 格挡突刺
+ItemModule_Plague | 瘟疫
+ItemModule_PrecisionCut | 精准切割
+ItemModule_QuickReload | 快速释放弹匣
+ItemModule_RadBullets | 辐射子弹
+ItemModule_RadioactiveRetaliation | 放射性报复
+ItemModule_RampUpFirerate | 气体活塞反馈回路
+ItemModule_ReaperMunition | 收割者弹药
+ItemModule_Rupture | 静电过载
+ItemModule_RuptureRiposte | 破裂反击
+ItemModule_RupturedArmour | 破裂护甲
+ItemModule_SalvagedRound | 子弹反馈
+ItemModule_Sear | 点火线圈
+ItemModule_SearRiposte | 灼烧反击
+ItemModule_SplinterShell | 碎片炮弹
+ItemModule_StackingRiposte | 叠加反击
+ItemModule_StaticCascade | 静电瀑布
+ItemModule_StructuralWeakness | 结构弱点
+ItemModule_VindictiveInfection | 复仇感染
+ItemModule_Virulence | 病毒强化
+ItemModule_Virus | 载荷注射器
+ItemModule_VirusRiposte | 病毒反击
+ItemModule_VirusSiphon | 病毒虹吸
