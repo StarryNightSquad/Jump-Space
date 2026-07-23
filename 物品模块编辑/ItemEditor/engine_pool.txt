@@ -1,0 +1,26 @@
+# 引擎词条池
+# 引擎组件可使用的模块
+# 
+# 文件格式说明:
+#   # 开头为注释行，空行忽略
+#   [Items] 区域: 当前类别的物品列表（仅供查看参考，编辑不影响功能）
+#   [Modules] 区域: 当前类别可用的词条模块列表
+#     格式: 模块代码名 | 中文名
+#     删除或注释掉某行 = 该模块不再对当前类别可用
+#     添加新行（需为有效模块代码名）= 该模块对当前类别可用
+#   修改后保存文件，重启游戏或输入 ie reload_pools 即可生效
+# 
+# 生成时间: 2026-07-23 21:59:19
+# 物品数: 4  模块数: 4
+
+[Items]
+4524f4ac1fa8cb34dbff50f8c5c14927 | 微等离子引擎
+f1302af5a63e825478b7fb9f953401aa | 漂移相位引擎
+fb2bbc3f13c228a44ba53f020e1df249 | 硝基脉冲引擎
+dde01f5723d9b0047abb3d223f5541cd | 质量喷射引擎
+
+[Modules]
+ItemModule_Acceleration | 燃料提取器
+ItemModule_EngineBoostSpeed | 涡轮增压
+ItemModule_EngineSpeed | 涡流导流片
+ItemModule_EngineTurnRate | 舵
