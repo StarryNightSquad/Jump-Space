@@ -72,19 +72,18 @@ Jump Space (Keepsake Games) 的 MelonLoader mod 集合，基于 IL2CPP 反编译
 
 ### Jump Space ChemicalPayload Fix — 化学弹头修复
 
-当前版本: **v1.0.0** | DLL: `JumpSpaceChemicalPayloadFix_v1.0.0.dll`
+当前版本: **v1.1.0** | DLL: `JumpSpaceChemicalPayloadFix_v1.1.0.dll`
 
-修复ValuePerUpgrade符号反了导致升级后触发门槛升高、腐蚀伤害降低的bug。
+修复化学弹头描述中Damage Cap与Damage显示位置颠倒的问题。
 
-**ISIL验证语义** (DisplayClass49_0回调逻辑还原):
-- `GetTweakableValue(0)` = **Damage Cap**(触发阈值): accumulatedDamage需 ≥ 此值才触发腐蚀效果
-- `GetTweakableValue(1)` = **Damage**(腐蚀伤害): 每tick消耗此值并施加腐蚀StatusEffect
-- 原版bug: Damage Cap的ValuePerUpgrade为正值(升级提高阈值→更难触发), Damage的ValuePerUpgrade为负值(升级降低伤害→越升越弱)
-- 修复方向: Damage Cap正值→负值(升级降低触发门槛), Damage负值→正值(升级增加腐蚀伤害)
+**原版bug**: 描述模板 "造成 {1} 点伤害后...造成 {0} 点伤害" 中，`{0}` 映射 Damage Cap (ValueIndex=0)，`{1}` 映射 Damage (ValueIndex=1)，导致语义颠倒——腐蚀伤害显示在触发阈值位置，触发阈值显示在腐蚀伤害位置。
+
+**修复方案**: 交换 `m_ValueIndex` (0↔1)，使 `{0}` 映射 Damage、`{1}` 映射 Damage Cap，描述语义正确："造成[触发阈值]点伤害后...造成[腐蚀伤害]点伤害"。
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
-| v1.0.0 | 2026-07-09 | 初始版本：修复化学弹头ValuePerUpgrade符号错误 |
+| v1.1.0 | 2026-07-25 | **修复描述顺序**: 交换m_ValueIndex(0↔1)使描述占位符映射正确；移除v1.0.0错误翻转ValuePerUpgrade正负号的逻辑 |
+| v1.0.0 | 2026-07-09 | 初始版本(已废弃)：错误翻转ValuePerUpgrade正负号，未解决描述顺序问题 |
 
 ---
 
