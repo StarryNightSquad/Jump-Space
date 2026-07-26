@@ -182,14 +182,14 @@ Jump Space (Keepsake Games) 的 MelonLoader mod 集合，基于 IL2CPP 反编译
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
-| v3.1.0 | 2026-07-26 | **术语规范化**: 表格列标题Allowed/Forbidden→白名单/黑名单，说明文字AllowedItems/ForbiddenItems→白名单/黑名单（m_AllowedItems/m_ForbiddenItems） |
+| v3.1.0 | 2026-07-26 | **术语规范化**: 表格列标题Allowed/Forbidden→白名单/黑名单，说明文字AllowedItems/ForbiddenItems→白名单列表/黑名单列表（m_AllowedItems/m_ForbiddenItems） |
 | v3.0.0 | 2026-07-25 | **分类阈值修正+武器名输出**: ①分类阈值从100%改为>50%(forbidMostMelee=ForbiddenMeleeCount*2>totalMelee)，Breakthrough等禁止4/5近战的模块正确分类为RangedOnly ②ModuleResult新增AllowedMeleeNames/ForbiddenMeleeNames等 ③ExportResults新增详细武器兼容性章节 |
 | v2.0.0 | 2026-07-25 | **方案A完善版**: ①近战武器发现——m_WeaponEntriesByGuid只含枪械，从白名单列表收集非枪械GUID反推近战武器(5个) ②黑名单列表含非武器物品(35个GUID仅在黑名单中出现，是消耗品/Cosmetic等，不影响分类) ③分类逻辑——白名单驱动+黑名单从forbidAll判专属(None) ④交叉验证通过——MeleeOnly 10/RangedOnly 10/Universal 54/None 0 ⑤输出枪械分组(基础4+附加60)+近战分组(基础4+附加60) |
 | v1.0.0 | 2026-07-25 | 初始版本：方案A兼容性矩阵分类 |
 
 **分类逻辑说明**:
-- **白名单(m_AllowedItems)**: 含近战GUID=兼容近战，含枪械GUID=兼容枪械，两者都有=Universal
-- **黑名单(m_ForbiddenItems)**: 仅当禁止全部枪械(forbidMostRanged)→近战专属，仅当禁止全部近战(forbidMostMelee)→枪械专属，同时禁止全部→None
+- **白名单列表(m_AllowedItems)**: 含近战GUID=兼容近战，含枪械GUID=兼容枪械，两者都有=Universal
+- **黑名单列表(m_ForbiddenItems)**: 仅当禁止全部枪械(forbidMostRanged)→近战专属，仅当禁止全部近战(forbidMostMelee)→枪械专属，同时禁止全部→None
 - **两者皆空** = Universal
 - 非武器禁止项(消耗品/Cosmetic等GUID)不影响分类
 
