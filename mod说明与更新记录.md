@@ -123,12 +123,13 @@ Jump Space (Keepsake Games) 的 MelonLoader mod 集合，基于 IL2CPP 反编译
 
 ### Jump Space Item Editor — 物品编辑器
 
-当前版本: **v3.9.0** | DLL: `JumpSpaceItemEditor_v3.9.0.dll`
+当前版本: **v3.10.0** | DLL: `JumpSpaceItemEditor_v3.10.0.dll`
 
 控制台交互式修改武器品质/词条/瞄具，模块池可编辑配置文件。四大分类浏览：武器/组件/神器/消费品。神器/消费品支持GUID白名单配置文件。火箭弹纳入消费品"特种"子分类。快捷键: F5 快速加载手持武器
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
+| v3.10.0 | 2026-07-26 | **池文件按ModuleClassifier v3.1.0全面纠错与补全**: ①枪械池63模块——19个枪械专属模块从通用区纠正至枪械专属区(Breach/Breakthrough/Corrosion/CritLink/Degrounded/DualBurstActuator/EmergencyVent/Emp/HairTrigger/HeavyBullets/LargeBullets/QuickReload/RadBullets/Rupture/SalvagedRound/Sear/StaticCascade/Virus/CorrodedServos)，新增4个枪械专属废案(BasicRounds/CritBoost/MetalRecycle/MicroBullets) ②近战池40模块——移除非近战基础模块(BasicMag/BasicReload/BasicTrigger)，DangerClose纠正至近战专属，新增ParryLunge废案 ③组件池补全——EngineSpeed(引擎废案)/ShieldRegen+ShieldsCapacity(护盾废案)/PowerProtector(电力废案) ④舰载武器池27→39模块——补全12个_Ship后缀模块 ⑤废案模块全量纳入(编辑器自带筛选) |
 | v3.9.0 | 2026-07-26 | **不可自然生成模块全面检测**: ①基础模块死区——m_IsBasicModule=true但不在任何BaseModuleSet中的模块被排除出随机池且无显式放置，永远不会自然生成(7个) ②流派-白名单交互死区——在流派中但流派排除堵死了白名单限定的唯一通道(如3个反应炉专属模块) ③IsUnreachableModule()统一检测三类不可达模块(废案/基础模块死区/流派-白名单交互死区)，废案过滤全面覆盖 ④CollectBaseModuleSetNames()运行时收集BaseModuleSet数据 |
 | v3.7.0 | 2026-07-25 | **原生生成+日志系统+删除瞄具覆盖**: ①SpawnItem/SpawnComponent改用ItemGenerator.Generate()原生生成(自动流派选择+白名单/黑名单过滤+模块权重)，手动Build回退，Dev_ItemEquipper最简回退 ②新增ItemEditorLogger双通道日志(MelonLogger控制台+Mods/ItemEditor_Logs/日期滚动文件，7天自动清理，Exception自动记录完整堆栈) ③删除SpawnItemWithScopeOverride——原生生成已自动选择符合稀有度的瞄具，生成与编辑独立 |
 | v3.6.1 | 2026-07-25 | **默认配置文件嵌入**: 新增DefaultConfigEmbed类，将所有配置文件内容嵌入mod，首次运行自动生成UserData/ItemEditor/目录下的9个配置文件(firearm/melee/artifact/consumable/engine/shield/generator/materia/ship_weapon)，新用户无需手动创建 |
@@ -175,12 +176,13 @@ Jump Space (Keepsake Games) 的 MelonLoader mod 集合，基于 IL2CPP 反编译
 
 ### Jump Space Module Classifier — 模块近战/枪械分类器
 
-当前版本: **v3.0.0** | DLL: `JumpSpaceModuleClassifier_v3.0.0.dll`
+当前版本: **v3.1.0** | DLL: `JumpSpaceModuleClassifier_v3.1.0.dll`
 
-方案A分类器：通过分析步战模块的白名单/黑名单（m_AllowedItems/m_ForbiddenItems），将74个步战模块分类为近战专属(MeleeOnly)/枪械专属(RangedOnly)/通用(Universal)。v3.0.0修复近战武器反推机制和分类逻辑。输出`模块分类结果.md`供ModuleExporter读取。快捷键: F8 手动重新扫描
+方案A分类器：通过分析步战模块的白名单/黑名单（m_AllowedItems/m_ForbiddenItems），将74个步战模块分类为近战专属(MeleeOnly)/枪械专属(RangedOnly)/通用(Universal)。v3.1.0起术语规范化。v3.0.0修复近战武器反推机制和分类逻辑。输出`模块分类结果.md`供ModuleExporter读取。快捷键: F8 手动重新扫描
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
+| v3.1.0 | 2026-07-26 | **术语规范化**: 表格列标题Allowed/Forbidden→白名单/黑名单，说明文字AllowedItems/ForbiddenItems→白名单/黑名单（m_AllowedItems/m_ForbiddenItems） |
 | v3.0.0 | 2026-07-25 | **分类阈值修正+武器名输出**: ①分类阈值从100%改为>50%(forbidMostMelee=ForbiddenMeleeCount*2>totalMelee)，Breakthrough等禁止4/5近战的模块正确分类为RangedOnly ②ModuleResult新增AllowedMeleeNames/ForbiddenMeleeNames等 ③ExportResults新增详细武器兼容性章节 |
 | v2.0.0 | 2026-07-25 | **方案A完善版**: ①近战武器发现——m_WeaponEntriesByGuid只含枪械，从白名单列表收集非枪械GUID反推近战武器(5个) ②黑名单列表含非武器物品(35个GUID仅在黑名单中出现，是消耗品/Cosmetic等，不影响分类) ③分类逻辑——白名单驱动+黑名单从forbidAll判专属(None) ④交叉验证通过——MeleeOnly 10/RangedOnly 10/Universal 54/None 0 ⑤输出枪械分组(基础4+附加60)+近战分组(基础4+附加60) |
 | v1.0.0 | 2026-07-25 | 初始版本：方案A兼容性矩阵分类 |
@@ -195,13 +197,15 @@ Jump Space (Keepsake Games) 的 MelonLoader mod 集合，基于 IL2CPP 反编译
 
 ### Jump Space Module Exporter — 模块数据导出
 
-当前版本: **v1.18.0** | DLL: `JumpSpaceModuleExporter_v1.18.0.dll`
+当前版本: **v1.21.0** | DLL: `JumpSpaceModuleExporter_v1.21.0.dll`
 
-导出所有模块/武器/组件数据到Markdown文件。v1.15.0起基础模块按武器类型分别收集(枪械基础模块不再出现在近战分组)。v1.14.0起基础模块判定使用BaseModuleSet.m_Modules显式列表。快捷键: F1 飞船导出, F2 特殊武器重新导出
+导出所有模块/武器/组件数据到Markdown文件。v1.21.0起术语规范化（Allowed/Forbidden→白名单/黑名单）。v1.15.0起基础模块按武器类型分别收集(枪械基础模块不再出现在近战分组)。v1.14.0起基础模块判定使用BaseModuleSet.m_Modules显式列表。快捷键: F1 飞船导出, F2 特殊武器重新导出
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
-| v1.18.0 | 2026-07-25 | **近战基础模块过滤修正**: isRangedOnlyBase = rangedBase && !meleeBase，BasicDamage同时存在于rangedBase和meleeBase中→保留在近战分组 |
+| v1.21.0 | 2026-07-26 | **术语规范化**: Allowed/Forbidden→白名单/黑名单，AllowedItems/ForbiddenItems→白名单列表/黑名单列表（m_AllowedItems/m_ForbiddenItems字段名不变） |
+| v1.20.0 | 2026-07-25 | **模块分配过滤机制导出**: 白名单/黑名单武器名解析，限定武器显示为"白名单=X个, 黑名单=Y个" |
+| v1.19.0 | 2026-07-25 | **废案检测修复**: 新增m_IsBasicModule标志检测，废案判定条件改为!isInSchool && !isBaseModule && !isBasicModuleFlag，Allowed/Forbidden诊断输出 |
 | v1.17.0 | 2026-07-25 | **基础模块按武器类型分离**: CollectBaseModuleNames改为CollectBaseModuleNamesByType，按PickupableItem_Data_GenericWeapon区分为枪械/近战武器，分别收集基础模块名集合。枪械专属基础模块(BasicMag/BasicReload/BasicTrigger等)不再出现在近战分组 |
 | v1.14.0 | 2026-07-25 | **基础模块判定修正**: ①从PickupableItem_Data.m_BaseModuleSet.m_Modules显式列表收集基础模块名集合，替代m_IsBasicModule字段(该字段**影响生成逻辑**——GetRelevantModules()中m_IsBasicModule=true的模块被排除出随机池，仅能通过BaseModuleSet显式放置) ②EmpToCorrosion_Ship标注为废案(未被任何模块池引用，已被EmpToDisruption替代) |
 | v1.13.0 | 2026-07-25 | **飞船全量导出**: 策略D3 FindObjectsOfTypeAll始终运行，遍历所有ShipMoveSettings_Playership资产+名称匹配，一次导出全部飞船移动参数 |
