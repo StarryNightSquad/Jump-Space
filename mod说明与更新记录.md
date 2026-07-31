@@ -212,12 +212,13 @@ Jump Space (Keepsake Games) 的 MelonLoader mod 集合，基于 IL2CPP 反编译
 
 ### Jump Space Rarity Mod — 稀有度修改
 
-当前版本: **v3.9.0** | DLL: `JumpSpaceRarityMod_v3.9.0.dll`
+当前版本: **v4.0.0** | DLL: `JumpSpaceRarityMod_v4.0.0.dll`
 
-修改物品稀有度/品质。v3.9.0起默认权重导出为Markdown格式(`默认权重.md`)。
+修改物品稀有度/品质。v4.0.0新增CR资源倍率功能（按威胁等级缩放资源产出量，兼容MorePlayers）。
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
+| v4.0.0 | 2026-07-30 | **CR资源倍率**: 新增Resource配置分类(EnableCRResourceScaling + CR1-5独立倍率)；CRResourceScalingPatch Postfix补丁；兼容MorePlayers(CR倍率叠加在人数倍率之上) |
 | v3.9.0 | 2026-07-23 | **Markdown格式输出**: 默认权重导出改为`默认权重.md`，表格/标题markdown语法 |
 | v3.7.0 | 2026-07-12 | 增强稀有度修改功能 |
 | v1.0.0 | — | 初始版本 |
@@ -243,34 +244,50 @@ Jump Space (Keepsake Games) 的 MelonLoader mod 集合，基于 IL2CPP 反编译
 
 ### Jump Space Gen Capture — 物品生成流程抓取器
 
-当前版本: **v1.0.0** | DLL: `JumpSpaceGenCapture_v1.0.0.dll`
+当前版本: **v1.8.0** | DLL: `JumpSpaceGenCapture_v1.8.0.dll`
 
-运行时Hook ItemGenerator.Generate，捕获武器/组件生成过程和BaseModuleSet数据。v1.0.0添加Enabled配置开关。快捷键: F8 BaseModuleSet dump, F9 模块权重dump
+运行时Hook ItemGenerator.Generate，捕获武器/组件生成过程和BaseModuleSet数据。v1.8.0合并F7-F10为单一F7全量导出+模块级Allowed/Forbidden GUID。快捷键: F7 全量导出, F11 场景物品溯源
 
 **配置**: MelonPreferences `[GenCapture]` — Enabled (默认true, 设为false禁用Hook和dump)
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
+| v1.8.0 | 2026-07-31 | **全量导出合并+模块黑白名单**: 合并F7-F10为单一F7全量导出；新增模块级AllowedItems/ForbiddenItems GUID导出；输出合并为GenCapture_FullDump.log；Section 2新增BaseModuleSet.m_ExcludedRarities导出 |
+| v1.7.0 | 2026-07-30 | **ExcludedRarities导出**: Section 2新增BaseModuleSet.m_ExcludedRarities导出（ItemRarityFlags位标志，标识模板排除的品质） |
+| v1.6.0 | 2026-07-29 | **F7全量导出合并**: 合并F7-F10为单一F7全量导出；新增模块级AllowedItems/ForbiddenItems GUID导出 |
+| v1.5.0 | 2026-07-29 | **F11修复**: 恢复使用Resources.FindObjectsOfTypeAll修复场景扫描 |
+| v1.4.0 | 2026-07-28 | **F11修复**: 改用Harmony补丁追踪OnPostSetupItemData事件 |
+| v1.3.0 | 2026-07-28 | **F11修复**: 改用FindObjectsOfTypeAll+TryCast |
+| v1.2.0 | 2026-07-28 | **F11增强溯源**: 模块GUID→名称解析、MaxRarity截断检测 |
+| v1.1.0 | 2026-07-28 | **F7 dump**: ItemGenerationConfig + CosmeticData导出 |
 | v1.0.0 | 2026-07-28 | 初始版本：Hook Generate + BaseModuleSet/Weight dump + Enabled配置 |
 
 **输出文件**:
-- `Mods/GenCapture_Generation.log` — 游戏退出时自动保存所有生成事件日志
-- `Mods/GenCapture_BaseModuleSet.log` — F8触发
-- `Mods/GenCapture_ModuleWeights.log` — F9触发
+- `Mods/GenCapture_FullDump.log` — F7触发（全量数据）
+- `Mods/GenCapture_Trace.log` — F11触发（场景物品溯源）
 
 ---
 
 ### Jump Space Item Spawner — 物品生成器
 
-当前版本: **v1.20.0** | DLL: `JumpSpaceItemSpawner_v1.20.0.dll`
+当前版本: **v1.28.0** | DLL: `JumpSpaceItemSpawner_v1.28.0.dll`
 
-GUI菜单按分类生成物品到玩家手中。支持三级菜单展开选择个体物品。v1.20.0模拟生成替代原生Generate，品质权重从游戏配置读取，武器自动分配瞄具。
+GUI菜单按分类生成物品到玩家手中。支持三级菜单展开选择个体物品。v1.28.0算法逆向文档一致性修复：ExcludedRarities品质上限+加权随机+模块品质Roll+流派显示。
 
 **配置**: MelonPreferences `[ItemSpawner]` — Enabled (默认true, 设为false则不显示GUI、不响应命令)
 
 | 版本 | 日期 | 变动 |
 |------|------|------|
-| v1.20.0 | 2026-07-29 | **模拟生成+瞄具分配+分类重构+品质权重**: ①注释ItemGenerator.Generate调用，改用BuildGeneratedItem模拟生成，品质/模块/瞄具完全由mod控制 ②RollItemRarity从ItemGenerationConfig.m_ChallengeRatings[0]读取CR=1权重配置(回退默认权重) ③RollArtifactRarity调用GameplayModifierManager.GetRarity()(默认0.6/0.3/0.1) ④GenerateCosmeticsForWeapon从AllCosmetics筛选Scope+品质范围+武器标签兼容(m_CompatibleWeaponTags) ⑤分类重构为5大类+子类：武器8子类/组件/神器(单独一级菜单)/消耗品7子类/其它3子类 ⑥神器品质按自然生成权重分配(60/30/10) ⑦新增Unity.Addressables.dll引用(标签兼容性检查) |
+| v1.28.0 | 2026-07-31 | **算法逆向文档一致性修复+灰色名字**: ①ExcludedRarities品质上限检查(传感器/瞄准→只能Common，护盾发生器→最高Epic) ②BaseModuleSet选模块从均匀随机改为m_Weight加权随机 ③School选择从合并所有School改为m_SelectionWeight加权随机选一个 ④TryAddModuleWithRarityFallback先Roll模块品质再降级重试 ⑤Item Editor显示流派名称+替换模块只显示当前流派模块 ⑥ForceNoQuality物品m_TemplateGuid=""使IsGenerated=false→灰色名字 |
+| v1.27.0 | 2026-07-31 | **分类修正**: ①CompCatMap {11}从"特殊武器"改为"护盾发生器"(护盾再生器归入护盾发生器) ②爆发护盾名称覆盖归入"特殊武器" ③电池从"补给品"改为"任务物品" ④辅助电源(消耗品)归入"其它/未知" ⑤放射性棒ForceNoQuality ⑥物质容器废案检测不再要求"重型"标签 |
+| v1.26.0 | 2026-07-31 | **分类修正+ForceNoQuality**: ①护盾发生器+瞄准模块归入"特殊武器"组件组 ②"强力炮塔"改名"特殊武器" ③特殊武器/补给品/收集品/任务物品/废案物品→ForceNoQuality ④消耗品下新增"废案物品"子分类 |
+| v1.25.0 | 2026-07-30 | **BuildModules重写**: 按ISIL逆向确认的两条规则重写——(1)基础模块品质直接绑定物品品质不做Clamp (2)附加模块TryAddModuleWithRarityFallback降级重试(Legendary→Epic→Rare→Common)，按m_MinRarity/m_MaxRarity内联过滤候选模块。移除不存在的ClampModuleRarity方法。ItemEditor替换模块品质改为直接使用物品品质 |
+| v1.24.0 | 2026-07-29 | **消耗品生成修复**: 消耗品(IsConsumable=true)不再走RollItemRarity+BuildGeneratedItem流程，改为创建Common品质、0模块、0外观的简单GeneratedItem |
+| v1.23.0 | 2026-07-29 | **移除神器功能**: 删除神器GUI按钮和所有神器代码，保留ArtifactEntry类和_allArtifacts字段供参考 |
+| v1.22.0 | 2026-07-29 | **Item Editor功能**: 独立GUI窗口编辑手持物品的模块和瞄具。GUI重构为双顶层按钮，Editor功能：获取手持物品信息→显示模块/外观列表→替换模块(品质自动提升至min(m_MaxRarity,物品品质)，去重)→替换瞄具(兼容标签+品质范围过滤)→确认重建 |
+| v1.21.1 | 2026-07-29 | **采矿激光枪分类修复**: CarryType映射到"近战"后增加名称覆盖检查，采矿激光/mininglaser改分到"未完成武器" |
+| v1.21.0 | 2026-07-29 | **采矿激光枪移至"未完成武器"**: 新增"移除手中物品"按钮(DestroyHeldItem直接销毁) |
+| v1.20.0 | 2026-07-29 | **模拟生成+瞄具分配+分类重构+品质权重**: ①注释ItemGenerator.Generate调用，改用BuildGeneratedItem模拟生成 ②RollItemRarity从ItemGenerationConfig读取CR权重 ③RollArtifactRarity调用GameplayModifierManager.GetRarity() ④GenerateCosmeticsForWeapon瞄具分配 ⑤分类重构5大类+子类 ⑥神器品质按自然生成权重分配(60/30/10) |
 | v1.19.0 | 2026-07-29 | **神器品质随机生成**: 按自然生成权重(Common=60%, Rare=30%, Legendary=10%)分配品质；AddArtifact后通过unsafe修改m_Rarity(offset 0x1B8) |
 | v1.18.0 | 2026-07-28 | **修正GetModuleCount**: ISIL反汇编确认返回School附加模块数(Common=0,Rare=1,Epic=2,Legendary=3)，非总模块数；BuildModules中targetCount改为BaseModuleSet已选数+School附加数 |
 | v1.17.0 | 2026-07-28 | **GenerationConfig可用性检查+Enabled配置**: Generate前检查ItemGenerator.GenerationConfig是否为null；添加MelonPreferences Enabled配置开关 |
@@ -281,6 +298,35 @@ GUI菜单按分类生成物品到玩家手中。支持三级菜单展开选择�
 | v1.12.0 | 2026-07-26 | **神器数据源**: AllArtifactScriptables(23个)；AddArtifact()生成 |
 | v1.10.0 | 2026-07-25 | **分类功能正常**: 13武器/31组件/1神器/17消耗品 |
 | v1.3.0 | 2026-07-24 | **GUI子分类面板修复** |
+
+---
+
+### Jump Space Player Count Tracker — 人数追踪器
+
+当前版本: **v1.3.0** | DLL: `JumpSpacePlayerCountTracker_v1.3.0.dll`
+
+诊断mod，追踪所有playerCount相关方法的调用和返回值，用于定位5P+环境下"禁用干扰器"任务中Power Conduit不出现的根因。32个追踪补丁覆盖干扰器建筑架构全链路。
+
+**配置**: MelonPreferences `[PlayerCountTracker]` — EnableTracking (默认true), MinPlayerCount (默认0)
+
+| 版本 | 日期 | 变动 |
+|------|------|------|
+| v1.3.0 | 2026-07-31 | 修复补丁15 AmbiguousMatchException；新增12个干扰器建筑补丁(22-32)：JamController.OnActiveChanged、BreakpointInteractManager、MultiInteractBreakpoint、MultiInteractToggler、Destructible.SafeStart、SetEnabledBasedOnPlayerCount.SafeStart；补丁数21→32 |
+| v1.2.0 | 2026-07-31 | 新增8个补丁(14-21)：AI_Ship_SquadHandler、OnFoot_WaveSpawner、JumpDriveJamController |
+| v1.1.0 | 2026-07-30 | **修复**: 移除GameObjectSpawner.Spawn()补丁(HarmonyException)，补丁数14→13 |
+| v1.0.0 | 2026-07-30 | 初始版本：14个追踪补丁 |
+
+---
+
+### Jump Space Config Guide — 配置说明生成器
+
+当前版本: **v1.0.1** | DLL: `JumpSpace_ConfigGuide_v1.0.1.dll`
+
+自动检测已加载的Jump Space mod，生成统一的中文配置说明文件(`UserData/MelonPreferences_配置说明.cfg`)。每次游戏启动自动刷新。
+
+| 版本 | 日期 | 变动 |
+|------|------|------|
+| v1.0.1 | 2026-07-28 | 初始版本：自动检测已加载mod + 读取MelonPreferences.cfg section + 残留section检测 |
 
 ---
 
